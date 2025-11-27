@@ -6,39 +6,27 @@ import App from "./App";
 import { AuthProvider } from "./lib/useAuth";
 import "./index.css";
 import { loadConfigToWindow } from "./config";
-import { msalInstance, createGetToken } from "./auth/msal";
+import { msalInstance, createGetToken, initMsal } from "./auth/msal";
 
 // 1) load env -> window.* BEFORE anything else
 loadConfigToWindow();
 
-// helper: robust MSAL init
-async function bootstrapMsal(msalInstance) {
-  try {
-    if (typeof msalInstance.initialize === "function") {
-      await msalInstance.initialize();
-      console.info("msal.initialize() done");
-      return;
-    }
-    if (typeof msalInstance.handleRedirectPromise === "function") {
-      try {
-        await msalInstance.handleRedirectPromise();
-        console.info("msal.handleRedirectPromise() done");
-      } catch (e) {
-        // not fatal
-        console.info("msal.handleRedirectPromise() non-fatal:", e?.message || e);
-      }
-    }
-  } catch (e) {
-    console.warn("bootstrapMsal failed (continuing):", e?.message || e);
-  }
-}
+/**
+ * This bootstrap waits for initMsal() which resolves after handleRedirectPromise() finished.
+ * That prevents interaction_in_progress races where components call getToken while redirect login is ongoing.
+ *
+ * We still wrap with try/catch so startup never crashes if auth initialization has an issue.
+ */
 
 (async () => {
   // 2) ensure msal is initialized (so getAllAccounts / silent acquire won't throw)
   try {
-    await bootstrapMsal(msalInstance);
+    // prefer initMsal exported from src/auth/msal (handles redirect promise)
+    await initMsal();
+    console.info("msal.initMsal() done");
   } catch (e) {
-    console.warn("MSAL bootstrap error (continuing):", e);
+    console.warn("MSAL initMsal() failed (continuing):", e?.message || e);
+    // continue — window.auth will still be prepared below, components should handle auth errors gracefully
   }
 
   // 3) create getToken and account helpers and expose window.auth for graphClient & useAuth
@@ -57,12 +45,13 @@ async function bootstrapMsal(msalInstance) {
       return await getTokenFn();
     };
     window.auth.getAccount = getAccountFn;
+    // keep loginPopup helper for existing code; underlying msal createGetToken will redirect when needed
     window.auth.loginPopup = async () => {
       try {
         await getTokenFn();
         return true;
       } catch (e) {
-        console.warn("loginPopup failed:", e);
+        console.warn("loginPopup/getToken fallback failed:", e);
         return false;
       }
     };
