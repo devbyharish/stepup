@@ -10,15 +10,30 @@
     "privacyUrl": "https://proud-pond-03ab5d21e.3.azurestaticapps.net/privacy",
     "termsOfUseUrl": "https://proud-pond-03ab5d21e.3.azurestaticapps.net/terms"
   },
-  "name": { "short": "StepUp", "full": "StepUp — FirstStep Academy" },
+  "name": {
+    "short": "StepUp",
+    "full": "StepUp — FirstStep Academy"
+  },
   "description": {
     "short": "StepUp admin portal (embedded web app)",
     "full": "StepUp is the admin / teacher portal for FirstStep Academy — embed this as a Teams tab or personal app."
   },
-  "icons": { "color": "color.png", "outline": "outline.png" },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
   "accentColor": "#0f6fff",
-  "permissions": [ "identity", "messageTeamMembers" ],
-  "validDomains": [ "proud-pond-03ab5d21e.3.azurestaticapps.net" ],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "proud-pond-03ab5d21e.3.azurestaticapps.net"
+  ],
+  "webApplicationInfo": {
+    "id": "8420f973-dff6-446a-9392-8c8fc960d3f8",
+    "resource": "https://graph.microsoft.com"
+  },
   "staticTabs": [
     {
       "entityId": "stepup-home",
