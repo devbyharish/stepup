@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>StepUp — UI Mockups (All Roles)</title>
+  <!-- Tailwind CDN (for quick mockups) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* simple visual polish */
+    body { background: #f5f7fb; }
+    .sidebar { min-width: 220px; max-width: 260px; }
+    .card { background: white; border-radius: 12px; box-shadow: 0 6px 18px rgba(28,28,30,0.04); }
+    .chip { font-weight:600; font-size:12px; padding: 4px 8px; border-radius: 999px; display:inline-block; }
+    .status-draft{ background:#eef2ff; color:#6366f1; }
+    .status-submitted{ background:#fff7ed; color:#f97316; }
+    .status-approved{ background:#ecfeff; color:#06b6d4; }
+    .status-inprogress{ background:#eef2ff; color:#6366f1; }
+    .status-signed{ background:#ecfdf5; color:#10b981; }
+    .status-rejected{ background:#fff1f2; color:#ef4444; }
+    .kbd { background:#111827; color:white; padding:2px 6px; border-radius:6px; font-size:12px; }
+    .small-muted{ font-size:12px; color:#6b7280; }
+  </style>
+</head>
+<body class="antialiased text-slate-800">
+
+  <div class="p-6 max-w-screen-xl mx-auto">
+    <header class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-lg bg-slate-800 text-white flex items-center justify-center text-lg font-bold">SU</div>
+        <div>
+          <div class="text-2xl font-semibold">StepUp — UI Mockups</div>
+          <div class="text-sm text-slate-500">Export-ready pages for each role — save as HTML and share</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <label class="text-sm small-muted">Preview Role</label>
+        <select id="roleSwitch" class="border rounded px-3 py-2">
+          <option value="educator" selected>Educator</option>
+          <option value="supervisor">Supervisor</option>
+          <option value="opsadmin">Opsadmin</option>
+          <option value="sysadmin">Sysadmin</option>
+        </select>
+
+        <button id="screenshot" class="ml-3 bg-slate-900 text-white px-3 py-2 rounded">Export PNG</button>
+      </div>
+    </header>
+
+    <div class="flex gap-6">
+      <!-- LEFT: Sidebar -->
+      <aside class="sidebar card p-4 shrink-0">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded bg-indigo-600 text-white flex items-center justify-center font-bold">SU</div>
+          <div>
+            <div class="font-semibold">StepUp</div>
+            <div id="roleBadge" class="text-xs text-slate-500">Educator</div>
+          </div>
+        </div>
+
+        <nav class="space-y-1 text-sm">
+          <a href="#" class="flex items-center gap-3 p-2 rounded hover:bg-slate-50">
+            <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M3 12h18M3 6h18M3 18h18"/></svg>
+            <span>Dashboard</span>
+          </a>
+          <a href="#" class="flex items-center gap-3 p-2 rounded hover:bg-slate-50"><svg class="w-4 h-4 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/></svg><span>Students</span></a>
+          <a href="#" class="flex items-center gap-3 p-2 rounded hover:bg-slate-50"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M3 6h18v12H3z"/></svg><span>Planners</span></a>
+          <a href="#" class="flex items-center gap-3 p-2 rounded hover:bg-slate-50"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M12 6v6l4 2"/></svg><span>Attendance</span></a>
+          <a href="#" class="flex items-center gap-3 p-2 rounded hover:bg-slate-50"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M12 20v-6"/></svg><span>Approvals</span></a>
+          <div class="border-t mt-3 pt-3 text-xs text-slate-500">Admin</div>
+          <a href="#" class="flex items-center gap-3 p-2 rounded hover:bg-slate-50"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M12 6v6"/></svg><span>User Roles</span></a>
+        </nav>
+      </aside>
+
+      <!-- RIGHT: Content area (role-specific panels) -->
+      <main class="flex-1">
+        <!-- Educator Panel -->
+        <section class="rolePanel" data-role="educator">
+          <div class="card p-4 mb-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-sm text-slate-500">Class</div>
+                <div class="text-xl font-semibold">Class 2A — Today</div>
+                <div class="small-muted">25 students • 2 absent expected</div>
+              </div>
+              <div class="flex items-center gap-3">
+                <button class="px-3 py-2 bg-indigo-600 text-white rounded">Create Planner</button>
+                <button class="px-3 py-2 border rounded">Mark Attendance</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+            <div class="card p-4">
+              <div class="text-sm text-slate-500">My Planners</div>
+              <div class="mt-3 space-y-3">
+                <!-- Planner item -->
+                <div class="border rounded p-3">
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <div class="font-semibold">Term Plan: Mathematics</div>
+                      <div class="text-xs small-muted">Class 2A • 10 sessions</div>
+                    </div>
+                    <div class="text-right">
+                      <div class="chip status-draft">Draft</div>
+                      <div class="text-xs small-muted mt-1">Updated 2d ago</div>
+                    </div>
+                  </div>
+                  <div class="mt-3 text-sm">Brief: Cover counting, addition, subtraction. Use worksheets and practice tests.</div>
+                  <div class="mt-3 flex gap-2">
+                    <button class="px-2 py-1 rounded border text-sm">Edit</button>
+                    <button class="px-2 py-1 rounded bg-blue-600 text-white text-sm">Submit</button>
+                    <button class="px-2 py-1 rounded">Preview</button>
+                  </div>
+                </div>
+
+                <div class="border rounded p-3">
+                  <div class="flex justify-between">
+                    <div>
+                      <div class="font-semibold">Weekly Plan: Science</div>
+                      <div class="text-xs small-muted">Class 2A • 1 week</div>
+                    </div>
+                    <div>
+                      <div class="chip status-inprogress">InProgress</div>
+                    </div>
+                  </div>
+                  <div class="mt-3 text-sm">Hands-on activity: Plant seeds. Observation log and photos.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card p-4">
+              <div class="text-sm text-slate-500">Quick Attendance</div>
+              <div class="mt-3">
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="flex items-center justify-between p-2 border rounded">
+                    <div>
+                      <div class="font-medium">Aisha</div>
+                      <div class="text-xs small-muted">Roll 1</div>
+                    </div>
+                    <div>
+                      <select class="border rounded px-2 py-1 text-sm">
+                        <option>Present</option><option>Absent</option><option>Late</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between p-2 border rounded">
+                    <div>
+                      <div class="font-medium">Ravi</div>
+                      <div class="text-xs small-muted">Roll 2</div>
+                    </div>
+                    <div><select class="border rounded px-2 py-1 text-sm"><option>Present</option></select></div>
+                  </div>
+                  <!-- More items... -->
+                </div>
+                <div class="mt-3 flex gap-2">
+                  <button class="px-3 py-2 bg-indigo-600 text-white rounded">Save</button>
+                  <button class="px-3 py-2 border rounded">Reset</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card p-4">
+              <div class="text-sm text-slate-500">Recent Assessments</div>
+              <div class="mt-3 space-y-2">
+                <div class="flex justify-between items-center p-2 border rounded">
+                  <div>
+                    <div class="font-medium">Math — Quiz 1</div>
+                    <div class="text-xs small-muted">Class 2A • 12 students scored</div>
+                  </div>
+                  <div><button class="px-2 py-1 bg-slate-100 rounded">Score</button></div>
+                </div>
+                <div class="flex justify-between items-center p-2 border rounded">
+                  <div>
+                    <div class="font-medium">Science — Assignment</div>
+                    <div class="text-xs small-muted">Pending review</div>
+                  </div>
+                  <div><button class="px-2 py-1 bg-slate-100 rounded">Review</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card p-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-sm text-slate-500">Students</div>
+                <div class="font-semibold">Class 2A — roster</div>
+              </div>
+              <div class="small-muted">Search: <span class="kbd">/</span></div>
+            </div>
+
+            <div class="mt-3 overflow-auto">
+              <table class="w-full text-sm">
+                <thead class="text-slate-500">
+                  <tr>
+                    <th class="p-2 text-left">Name</th>
+                    <th class="p-2 text-left">Roll</th>
+                    <th class="p-2 text-left">Status</th>
+                    <th class="p-2 text-left">Progress</th>
+                    <th class="p-2 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-t">
+                    <td class="p-2">Aisha</td>
+                    <td class="p-2">1</td>
+                    <td class="p-2">Active</td>
+                    <td class="p-2">70%</td>
+                    <td class="p-2 text-right"><button class="px-2 py-1 rounded border">View</button></td>
+                  </tr>
+                  <tr class="border-t">
+                    <td class="p-2">Ravi</td>
+                    <td class="p-2">2</td>
+                    <td class="p-2">Active</td>
+                    <td class="p-2">85%</td>
+                    <td class="p-2 text-right"><button class="px-2 py-1 rounded border">View</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Supervisor Panel -->
+        <section class="rolePanel hidden" data-role="supervisor">
+          <div class="card p-4 mb-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-sm text-slate-500">Supervisor Hub</div>
+                <div class="text-xl font-semibold">Pending Approvals</div>
+                <div class="small-muted">Review lesson planners and leave requests</div>
+              </div>
+              <div class="flex gap-3">
+                <button class="px-3 py-2 bg-green-600 text-white rounded">Approve All</button>
+                <button class="px-3 py-2 border rounded">Export Report</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+            <div class="card p-4">
+              <div class="text-sm text-slate-500">Approvals Queue</div>
+              <div class="mt-3 space-y-3">
+                <div class="border rounded p-3">
+                  <div class="flex justify-between">
+                    <div>
+                      <div class="font-semibold">Math Term Plan — Ms. Priya</div>
+                      <div class="text-xs small-muted">Class 2A</div>
+                    </div>
+                    <div><div class="chip status-submitted">Submitted</div></div>
+                  </div>
+                  <div class="mt-3 small-muted">Summary: 10 sessions covering basics</div>
+                  <div class="mt-3 flex gap-2">
+                    <button class="px-3 py-1 bg-green-600 text-white rounded">Approve</button>
+                    <button class="px-3 py-1 border rounded">Reject</button>
+                    <button class="px-3 py-1 border rounded">View</button>
+                  </div>
+                </div>
+
+                <div class="border rounded p-3">
+                  <div class="flex justify-between">
+                    <div>
+                      <div class="font-semibold">Science Weekly — Mr. Arun</div>
+                      <div class="text-xs small-muted">Class 3B</div>
+                    </div>
+                    <div><div class="chip status-submitted">Submitted</div></div>
+                  </div>
+                  <div class="mt-3 small-muted">Summary: Experiments, observations and worksheet</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card p-4">
+              <div class="text-sm text-slate-500">Teacher Performance</div>
+              <div class="mt-3">
+                <div class="text-lg font-semibold">Average Score: 78%</div>
+                <div class="small-muted mt-2">Teachers with low coverage: 2</div>
+                <div class="mt-3">
+                  <div class="w-full bg-slate-100 h-3 rounded overflow-hidden"><div style="width:78%" class="h-3 bg-indigo-600"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card p-4">
+              <div class="text-sm text-slate-500">Pending Leave Requests</div>
+              <div class="mt-3 space-y-2">
+                <div class="border rounded p-3">
+                  <div class="flex justify-between">
+                    <div>
+                      <div class="font-medium">Ms. Priya</div>
+                      <div class="text-xs small-muted">Reason: Medical • 2025-11-18 → 2025-11-20</div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                      <button class="px-2 py-1 bg-green-600 text-white rounded">Approve</button>
+                      <button class="px-2 py-1 border rounded">Reject</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="border rounded p-3 small-muted">No more pending requests</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card p-4">
+            <div class="font-semibold">Approval Activity</div>
+            <div class="text-sm small-muted mt-2">Recent signoffs and comments</div>
+            <ul class="mt-3 space-y-2 text-sm">
+              <li class="flex justify-between"><div>Math Term Plan — Signed off by Supervisor</div><div class="small-muted">2h ago</div></li>
+              <li class="flex justify-between"><div>Leave — Ms. Sudha — Approved</div><div class="small-muted">1d ago</div></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Opsadmin Panel -->
+        <section class="rolePanel hidden" data-role="opsadmin">
+          <div class="card p-4 mb-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-sm text-slate-500">Operations</div>
+                <div class="text-xl font-semibold">Student Management</div>
+                <div class="small-muted">Create / Edit / Bulk import students</div>
+              </div>
+              <div>
+                <button class="px-3 py-2 bg-indigo-600 text-white rounded">Add Student</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card p-4">
+            <div class="flex items-center justify-between">
+              <div class="text-sm text-slate-500">Students</div>
+              <div class="text-xs small-muted">Filter by class</div>
+            </div>
+
+            <div class="mt-3 overflow-auto">
+              <table class="w-full text-sm">
+                <thead class="text-slate-500">
+                  <tr>
+                    <th class="p-2 text-left">StudentId</th>
+                    <th class="p-2 text-left">Name</th>
+                    <th class="p-2 text-left">Class</th>
+                    <th class="p-2 text-left">Phone</th>
+                    <th class="p-2 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-t">
+                    <td class="p-2">STD-001</td>
+                    <td class="p-2">Aisha</td>
+                    <td class="p-2">2A</td>
+                    <td class="p-2">+91 9xxxx</td>
+                    <td class="p-2 text-right">
+                      <button class="px-2 py-1 border rounded">Edit</button>
+                      <button class="px-2 py-1 border text-red-600 rounded">Delete</button>
+                    </td>
+                  </tr>
+                  <tr class="border-t">
+                    <td class="p-2">STD-002</td>
+                    <td class="p-2">Ravi</td>
+                    <td class="p-2">2A</td>
+                    <td class="p-2">+91 9xxxx</td>
+                    <td class="p-2 text-right">
+                      <button class="px-2 py-1 border rounded">Edit</button>
+                      <button class="px-2 py-1 border text-red-600 rounded">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-3 flex gap-2">
+              <button class="px-3 py-2 bg-indigo-600 text-white rounded">Import CSV</button>
+              <button class="px-3 py-2 border rounded">Export</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sysadmin Panel -->
+        <section class="rolePanel hidden" data-role="sysadmin">
+          <div class="card p-4 mb-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-sm text-slate-500">System Administration</div>
+                <div class="text-xl font-semibold">User Roles & Settings</div>
+                <div class="small-muted">Full access control and system settings</div>
+              </div>
+              <div>
+                <button class="px-3 py-2 bg-red-600 text-white rounded">System Settings</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div class="card p-4">
+              <div class="text-sm text-slate-500">User Roles</div>
+              <div class="mt-3 overflow-auto">
+                <table class="w-full text-sm">
+                  <thead class="text-slate-500"><tr><th class="p-2 text-left">Email</th><th class="p-2 text-left">Name</th><th class="p-2 text-left">Role</th><th class="p-2 text-right">Actions</th></tr></thead>
+                  <tbody>
+                    <tr class="border-t"><td class="p-2">opsadmin@school</td><td class="p-2">Ops Admin</td><td class="p-2">opsadmin</td><td class="p-2 text-right"><button class="px-2 py-1 border rounded">Edit</button></td></tr>
+                    <tr class="border-t"><td class="p-2">supervisor@school</td><td class="p-2">Supervisor</td><td class="p-2">supervisor</td><td class="p-2 text-right"><button class="px-2 py-1 border rounded">Edit</button></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="mt-3"><button class="px-3 py-2 bg-indigo-600 text-white rounded">Add Role</button></div>
+            </div>
+
+            <div class="card p-4">
+              <div class="text-sm text-slate-500">System Logs</div>
+              <div class="mt-3 small-muted">Recent actions and audit trail</div>
+              <ul class="mt-3 text-sm space-y-2">
+                <li class="border rounded p-2"><div class="flex justify-between"><div>Student import: 34 rows</div><div class="small-muted">1h ago</div></div></li>
+                <li class="border rounded p-2"><div class="flex justify-between"><div>Planner approved: Ms. Priya</div><div class="small-muted">2h ago</div></div></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <footer class="mt-8 text-sm text-slate-500 text-center">Mockups generated for StepUp • Save this file as <code>stepup-mockups.html</code></footer>
+  </div>
+
+  <script>
+    // role switcher logic
+    const roleSwitch = document.getElementById('roleSwitch');
+    const roleBadge = document.getElementById('roleBadge');
+    const panels = document.querySelectorAll('.rolePanel');
+
+    function showRole(role) {
+      panels.forEach(p => p.classList.toggle('hidden', p.getAttribute('data-role') !== role));
+      roleBadge.innerText = role.charAt(0).toUpperCase() + role.slice(1);
+    }
+
+    roleSwitch.addEventListener('change', (e) => showRole(e.target.value));
+    showRole(roleSwitch.value);
+
+    // quick export (screenshot) - uses html2canvas if loaded
+    document.getElementById('screenshot').addEventListener('click', async () => {
+      // prefer html2canvas if available, otherwise instruct user
+      if (window.html2canvas) {
+        const el = document.querySelector('.p-6');
+        const canvas = await html2canvas(el, { scale: 2 });
+        const url = canvas.toDataURL('image/png');
+        const a = document.createElement('a'); a.href = url; a.download = 'stepup-mockup.png'; a.click();
+      } else {
+        alert('To export PNG: either take a screenshot or include html2canvas library. For automatic export, add script: https://html2canvas.hertzen.com/dist/html2canvas.min.js to this file.');
+      }
+    });
+  </script>
+</body>
+</html>
+// // Basic brand & simple layout
+// const brand = {
+//   primary: "#00B5EF",
+//   accent: "#F9C600"
+// };
