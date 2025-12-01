@@ -22,7 +22,7 @@ jobs:
       - name: Build And Deploy
         id: builddeploy
         env:
-          VITE_SITE_ID: ${{ secrets.VITE_SITE_ID }}
+          VITE_SITE_ID: ${{ secrets.VITE_SP_SITE_ID }}
           VITE_LISTS_JSON: ${{ secrets.VITE_LISTS_JSON }}
           VITE_AAD_CLIENT_ID: ${{ secrets.VITE_AAD_CLIENT_ID }}
           VITE_AAD_TENANT_ID: ${{ secrets.VITE_AAD_TENANT_ID }}
@@ -52,4 +52,5 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_POND_03AB5D21E }}
           action: "close"
+
 
